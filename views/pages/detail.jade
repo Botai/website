@@ -1,0 +1,28 @@
+extends ../layout
+//- 详情页
+block content
+	.container
+		.row
+			//- 左边宽度 7
+			.col-md-7
+				//- 嵌入播放器
+				embed(src="#{movie.flash}", allowFullScreen="true", quality="high", width="720", height="600", align="middle", type="application/x-shockwave-flash")
+			//- 右边宽度 5
+			.col-md-5
+				dl.dl-horizontal
+					dt 电影名字
+					dd #{movie.title}
+					dt 导演
+					dd #{movie.doctor}
+					dt 国家
+					dd #{movie.country}
+					dt 语言
+					dd #{movie.language}
+					dt 上映年份
+					dd #{movie.year}
+					dt 海报地址
+					dd #{movie.poster}
+					dt 片源地址
+					dd #{movie.flash}
+					dt 简介
+					dd #{movie.summary}
