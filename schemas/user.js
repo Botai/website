@@ -43,10 +43,27 @@ UserSchema.pre('save', function(next) {
 
         user.password = hash;
         next();
-      })
+      });
     });
     //next();
 });
+
+
+UserSchema.methods = {
+  //密码 匹配 验证 (登录验证)
+  comparePassword: function(_password, cb) {
+    bcrypt.compare(_password, this.password, function(err, isMatch) {
+      if (err) {
+        return cb(err);
+      }
+      cb(null, isMatch);
+    });
+  }
+  
+};
+
+
+
 
 UserSchema.statics = {
     // 取出数据库所有的数据
