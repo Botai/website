@@ -9,6 +9,7 @@ var UserSchema = new mongoose.Schema({
       type: String
     },
     password: String,
+    role: String,
     meta: {
         createAt: {
             type: Date,
@@ -31,7 +32,7 @@ UserSchema.pre('save', function(next) {
     }
 
     //密码 加 盐
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    bcrypt.genSalt(SALT_WORK_FACTOR,function(err, salt) {
       if (err) {
         return next(err);
       }
@@ -59,7 +60,7 @@ UserSchema.methods = {
       cb(null, isMatch);
     });
   }
-  
+
 };
 
 

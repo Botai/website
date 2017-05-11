@@ -15,7 +15,7 @@ var port = process.env.PORT || 3000;
 
 mongoose.connect(dbUrl);
 
-app.set('views', './views/pages');
+app.set('views', './app/views/pages');
 app.set('view engine', 'jade');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,15 +40,12 @@ if('development' === app.get('env') ) {
   mongoose.set('debug', true);
 }
 
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.locals.moment = require('moment');
 
-app.listen(port);
-
-console.log('server is start on port '+ port);
-
 require('./config/routes')(app);
+
+app.listen(port);
+console.log('server is start on port '+ port);
