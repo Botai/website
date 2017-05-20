@@ -1,0 +1,18 @@
+extends ../layout
+//- 后台管理
+block content
+	.container
+		.row
+			form.form-horizontal(method="post", action="/admin/user/new")
+				input(type="hidden", name="user[_id]", value="#{user._id}")
+				.form-group
+					label.col-sm-2.control-label(for='inputTitle') 名字
+					.col-sm-10
+						input#inputTitle.form-control(type='text', name='user[name]', value='#{user.name}')
+				.form-group
+					label.col-sm-2.control-label(for='inputTitle') 管理员权限
+					.col-sm-10
+						input#inputTitle.form-control(type='text', name='user[role]', value='#{user.role}')
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type="submit") 录入

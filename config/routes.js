@@ -26,13 +26,17 @@ module.exports = function(app) {
   app.get('/logout', User.logout);
   app.get('/signin', User.showSignin);
   app.get('/signup', User.showSignup);
-  app.get('/admin/userlist', User.userlist);
+  // 登录，管理员权限 用户管理页面
+  app.get('/admin/user/update/:id', User.signinRequired, User.adminRequired, User.update);
+  app.post('/admin/user/new', User.signinRequired, User.adminRequired, User.save);
+  app.get('/admin/user/list', User.signinRequired, User.adminRequired, User.userlist);
+
   // Movie
   app.get('/movie/:id', Movie.detail);
-  app.get('/admin/movie', Movie.admin);
-  app.get('/admin/update/:id', Movie.update);
-  app.get('/admin/movie/new', Movie.save);
-  app.get('/admin/list', Movie.list);
-  app.delete('/admin/list', Movie.del);
+  app.get('/admin/movie', User.signinRequired, User.adminRequired, Movie.admin);
+  app.get('/admin/movie/update/:id', User.signinRequired, User.adminRequired, Movie.update);
+  app.post('/admin/movie/new', User.signinRequired, User.adminRequired, Movie.save);
+  app.get('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.list);
+  app.delete('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.del);
 
 };
