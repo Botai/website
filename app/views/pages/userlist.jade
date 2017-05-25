@@ -8,6 +8,7 @@ block content
 					tr
 						th 名字
 						th 录入时间
+						th 最后登录时间
 						th 管理员权限
 						th 更新
 						th 删除
@@ -16,6 +17,7 @@ block content
 						tr(class="item-id-#{item._id}")
 							td #{item.name}
 							td #{moment(item.meta.updateAt).format('YYYY/MM/DD')}
+							td #{moment(item.meta.lastSignin).format('YYYY/MM/DD/HH:mm:ss')}
 							if(item.role >= 10)
 								td 管理员
 							else
@@ -23,4 +25,4 @@ block content
 							td: a(target="_black", href="/admin/user/update/#{item._id}") 修改
 							td
 								button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
-	//script(src="/js/admin.js")
+	script(src="/js/userDel.js")

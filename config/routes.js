@@ -4,6 +4,7 @@
 var Index = require('../app/controllers/index');
 var User = require('../app/controllers/user');
 var Movie = require('../app/controllers/movie');
+var Comment = require('../app/controllers/comment');
 
 module.exports = function(app) {
 
@@ -23,6 +24,10 @@ module.exports = function(app) {
   // User
   app.post('/user/signup', User.signup);
   app.post('/user/signin', User.signin);
+
+  app.get('/hasUser', User.hasUser);
+  app.get('/noUser', User.noUser);
+  app.get('/wrongPwd', User.wrongPwd);
   app.get('/logout', User.logout);
   app.get('/signin', User.showSignin);
   app.get('/signup', User.showSignup);
@@ -30,6 +35,8 @@ module.exports = function(app) {
   app.get('/admin/user/update/:id', User.signinRequired, User.adminRequired, User.update);
   app.post('/admin/user/new', User.signinRequired, User.adminRequired, User.save);
   app.get('/admin/user/list', User.signinRequired, User.adminRequired, User.userlist);
+  app.delete('/admin/user/list', User.signinRequired, User.adminRequired, User.del);
+
 
   // Movie
   app.get('/movie/:id', Movie.detail);
@@ -38,5 +45,8 @@ module.exports = function(app) {
   app.post('/admin/movie/new', User.signinRequired, User.adminRequired, Movie.save);
   app.get('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.list);
   app.delete('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.del);
+
+  // comment
+  app.post('/user/comment', User.signinRequired, Comment.save);
 
 };

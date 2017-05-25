@@ -16,7 +16,23 @@ exports.showSignin = function(req, res) {
   });
 };
 
+exports.hasUser = function(req, res) {
+  res.render('hasUser', {
+      title: '用户已存在'
+  });
+};
 
+exports.noUser = function(req, res) {
+  res.render('noUser', {
+      title: '用户不存在'
+  });
+};
+
+exports.wrongPwd = function(req, res) {
+  res.render('wrongPwd', {
+      title: '密码错误'
+  });
+};
 // signup
 exports.signup = function(req, res) {
   var _user = req.body.user;
@@ -26,7 +42,7 @@ exports.signup = function(req, res) {
       console.log(err);
     }
     if (user) {
-      return res.redirect('/signin');
+      return res.redirect('/hasUser');
     } else {
       user = new User(_user);
       user.save(function(err, user) {
@@ -53,7 +69,7 @@ exports.signin = function(req, res) {
       console.log(err);
     }
     if (!user) {
-      return res.redirect('/signup');
+      return res.redirect('/noUser');
     }
 
     user.comparePassword(password, function(err, isMatch) {
@@ -61,13 +77,14 @@ exports.signin = function(req, res) {
         console.log(err);
       }
       if (isMatch) {
+        user.lastSignin = Date.now();
         //保持状态   req.session
         req.session.user = user;
 
         return res.redirect('/');
       } else {
         console.log('not matched');
-        return res.redirect('/signin');
+        return res.redirect('/wrongPwd');
       }
 
     });
@@ -80,7 +97,7 @@ exports.logout = function(req, res) {
 
   delete req.session.user;
   // delete app.locals.user;
-  res.redirect('/signin');
+  res.redirect('/');
 };
 
 // admin update
@@ -123,7 +140,7 @@ exports.save = function(req, res) {
             role: userObj.role
         });
 
-        _user.save(function(err, movie) {
+        _user.save(function(err, user) {
             if(err) {
                 console.log(err);
             }
@@ -134,7 +151,19 @@ exports.save = function(req, res) {
 
 };
 
-
+// list delete user
+exports.del = function(req, res) {
+    var id = req.query.id;
+    if(id) {
+        User.remove({_id: id}, function(err, user) {
+            if(err) {
+                console.log(err);
+            }else {
+                res.json({success: 1});
+            }
+        });
+    }
+};
 
 // userlist page
 exports.userlist = function(req, res) {

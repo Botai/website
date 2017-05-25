@@ -4,8 +4,10 @@ block content
   .container
     .row
       .col-md-5
+        | 请登录后查看当前内容
         form(method="post", action="/user/signin")
           .modal-body
+            br
             .form-group
               label(for="signinName") 用户名
               input#signinName.form-control(name="user[name]", type="text")

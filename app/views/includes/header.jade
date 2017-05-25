@@ -1,18 +1,5 @@
-.container
-	.row
-		.page-header
-			h1 #{title}
-			small movie
-		a(href="/") 首页 |  
-		a(href="/admin/movie") 后台添加电影 |  
-		a(href="/admin/movie/list") 查看已存电影 |  
-		a(href="/admin/user/list") 查看已存用户 |  
-		a(href="/signup") 注册页面 | 
-		a(href="/signin") 登录页面 |  
-		管理员：zxc 密码：zxc |
-		普通用户：zpy 密码：zpy |  
-		hr
-.navbar.navbar-default.navbar-fixed-bottom
+
+.navbar.navbar-default.navbar-top
 	.container
 		.navbar-header
 			a.navbar-brand(href="/") movie
@@ -56,4 +43,17 @@
 				.modal-footer
 					button.btn.btn-default(type="button", data-dismiss="modal") 关闭
 					button.btn.btn-success(type="submit") 提交
-					
+.container
+	.row
+		.page-header
+			h1 #{title}
+			small movie
+		a(href="/") 首页 |   
+		a(href="/admin/movie/list") 查看已存电影 |  
+		a(href="/admin/movie") 后台添加电影 | 
+		a(href="/admin/user/list") 查看已存用户 |  
+		//- a(href="/signup") 注册页面 | 
+		//- a(href="/signin") 登录页面 |  
+		| 管理员：admin 密码：admin |
+		| 普通用户：test 密码：test |  
+		hr					

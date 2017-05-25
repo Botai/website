@@ -26,9 +26,10 @@ app.use(session({
   store: new MongoStore({
     url: dbUrl,
     collection: 'sessions',
-  }),
-
+  })
 }));
+
+
 //app.configer  配置
 //本地配置 if else
 if('development' === app.get('env') ) {
@@ -39,6 +40,8 @@ if('development' === app.get('env') ) {
   app.locals.pretty = true;
   mongoose.set('debug', true);
 }
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
