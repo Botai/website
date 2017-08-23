@@ -38,6 +38,7 @@ module.exports = function(app) {
   app.get('/admin/user/list', User.signinRequired, User.adminRequired, User.userlist);
   app.delete('/admin/user/list', User.signinRequired, User.adminRequired, User.del);
 
+  app.get('/admin/contact', User.signinRequired, User.adminRequired, User.contact);
 
   // Movie
   app.get('/movie/:id', Movie.detail);

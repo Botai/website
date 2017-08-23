@@ -34,9 +34,11 @@ $(function() {
           $('#inputPoster').val(data.images.large)
           $('#inputYear').val(data.year)
           $('#inputSummary').val(data.summary)
+          console.log(data);
         }
       });
-      console.log("获取豆瓣电影成功");
+      console.log("ajax获取豆瓣电影成功");
     }
   })
+
 });

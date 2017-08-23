@@ -1,61 +1,77 @@
 
 .navbar.navbar-default.navbar-top
-	.container
-		.navbar-header
-			a.navbar-brand(href="/") movie
-		if user
-			p.navbar-text.navbar-right
-				span 欢迎您,#{user.name}
-				span &nbsp;|&nbsp;
-				a.navbar-link(href="/logout") 退出
-		else
-			p.navbar-text.navbar-right
-				a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册
-				span &nbsp;|&nbsp;
-				a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") 登录
+  .container
+    .navbar-header
+      a.navbar-brand(href="/") movie
+    if user
+      p.navbar-text.navbar-right
+        span 欢迎您,#{user.name}
+        span &nbsp;|&nbsp;
+        a.navbar-link(href="/logout") 退出
+    else
+      p.navbar-text.navbar-right
+        a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册
+        span &nbsp;|&nbsp;
+        a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") 登录
 #signupModal.modal.fade
-	.modal-dialog
-		.modal-content
-			form(method="post", action="/user/signup")
-				.modal-header 注册
-				.modal-body
-					.form-group
-						label(for="signupName") 用户名
-						input#signupName.form-control(name="user[name]", type="text")
-					.form-group
-						label(for="signupPassword") 密码
-						input#signupPassword.form-control(name="user[password]", type="text")
-				.modal-footer
-					button.btn.btn-default(type="button", data-dismiss="modal") 关闭
-					button.btn.btn-success(type="submit") 提交
+  .modal-dialog
+    .modal-content
+      form(method="post", action="/user/signup")
+        .modal-header 注册
+        .modal-body
+          .form-group
+            label(for="signupName") 用户名
+            input#signupName.form-control(name="user[name]", type="text")
+          .form-group
+            label(for="signupPassword") 密码
+            input#signupPassword.form-control(name="user[password]", type="text")
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+          button.btn.btn-success(type="submit") 提交
 #signinModal.modal.fade
-	.modal-dialog
-		.modal-content
-			form(method="post", action="/user/signin")
-				.modal-header 登录
-				.modal-body
-					.form-group
-						label(for="signinName") 用户名
-						input#signinName.form-control(name="user[name]", type="text")
-					.form-group
-						label(for="signinPassword") 密码
-						input#signinPassword.form-control(name="user[password]", type="text")
-				.modal-footer
-					button.btn.btn-default(type="button", data-dismiss="modal") 关闭
-					button.btn.btn-success(type="submit") 提交
+  .modal-dialog
+    .modal-content
+      form(method="post", action="/user/signin")
+        .modal-header 登录
+        .modal-body
+          .form-group
+            label(for="signinName") 用户名
+            input#signinName.form-control(name="user[name]", type="text")
+          .form-group
+            label(for="signinPassword") 密码
+            input#signinPassword.form-control(name="user[password]", type="text")
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+          button.btn.btn-success(type="submit") 提交
 .container
-	.row
-		.page-header
-			h1 #{title}
-			small movie
-		a(href="/") 首页 |   
-		a(href="/admin/movie/list") 查看已存电影 |  
-		a(href="/admin/movie") 后台添加电影 | 
-		a(href="/admin/category/new") 添加电影分类 |  
-		a(href="/admin/category/list") 查看电影分类 |  
-		a(href="/admin/user/list") 查看已存用户 |  
-		//- a(href="/signup") 注册页面 | 
-		//- a(href="/signin") 登录页面 |  
-		| 管理员：admin 密码：admin |
-		| 普通用户：test 密码：test |  
-		hr					
+  //- | 管理员：admin 密码：admin |
+  //- | 普通用户：test 密码：test |  
+  //- hr					
+  .masthead
+    h3.text-muted #{title}
+    |         
+    nav
+      ul.nav.nav-justified
+        li.nav1
+          a(href="/") 首页
+        |             
+        li.nav2
+          a(href="/admin/movie/list") 查看已存电影
+        |             
+        li.nav3
+          a(href="/admin/movie") 后台添加电影
+        |             
+        li.nav4
+          a(href="/admin/category/new") 添加电影分类
+        |             
+        li.nav5
+          a(href="/admin/category/list") 查看电影分类
+        |             
+        li.nav6
+          a(href="/admin/user/list") 查看已存用户
+        |             
+        li.nav7
+          a(href="/admin/contact") 联系我
+        
+  hr
+  

@@ -2,6 +2,7 @@ var _ = require('underscore');
 var User = require('../models/user');
 var express = require('express');
 var app = express();
+var fs = require('fs');
 
 
 exports.showSignup = function(req, res) {
@@ -197,4 +198,18 @@ exports.adminRequired = function(req, res, next) {
     return res.redirect('/signin');
   }
   next();
+};
+
+
+//contact me
+
+var file = "./app/data/test.json";
+
+exports.contact = function(req, res) {
+  var data = JSON.parse(fs.readFileSync(file));
+
+  res.render('contact', {
+      title: '联系我',
+      data: data
+  });
 };

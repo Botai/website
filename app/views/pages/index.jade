@@ -1,19 +1,27 @@
 extends ../layout
 //- 首页
 block content
-	.container
-		.row
-			each cat in categories
-				.panel.panel-default
-					.panel-heading
-						h3 #{cat.name}
-					.panel-body
-						if cat.movies && cat.movies.length > 0
-							each item in cat.movies
-								.col-md-2
-									.thumbnail
-										a(href="/movie/#{item._id}")
-											img(src="#{item.poster}", alt="#{item.title}")
-										.caption
-											h3 #{item.title}
-											p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 观看预告片
+  .container
+    .row
+      .panel.panel-default#new_movies 
+        .panel-heading
+          button.btn.btn-primary#new_movies_local 获取最近热映电影
+          button.btn.btn-primary#coming_soon 获取即将上映电影
+        .panel-body.new_movies_title 
+            
+    each cat in categories
+      .panel.panel-default
+        .panel-heading
+          h3 #{cat.name}
+        .panel-body
+          if cat.movies && cat.movies.length > 0
+            each item in cat.movies
+              .col-md-2
+                .thumbnail
+                  a(href="/movie/#{item._id}")
+                    img(src="#{item.poster}", alt="#{item.title}")
+                  .caption
+                    h3 #{item.title}
+                    p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 观看预告片
+  script(src="/js/api.js")
+  script(src="/js/header.js")
