@@ -169,25 +169,57 @@ exports.save = (req, res) => {
 
     })
   } else {
-    _movie = new Movie(movieObj);
-    var categoryId = _movie.category;
-    _movie.save((err, movie) => {
+    // _movie = new Movie(movieObj);
+    // var categoryId = _movie.category;
+    // _movie.save((err, movie) => {
+    //   if (err) {
+    //     console.log(err);
+    //     return;
+    //   }
+    //   console.log(categoryId);
+    //   Category.findById(categoryId, (err, category) => {
+    //     if (err) {
+    //       console.log(err);
+    //       return;
+    //     }
+    //     console.log(category);
+    //     category.movies.push(movie);
+    //     category.save((err, category) => {
+    //       res.redirect('/movie/' + movie._id);
+    //     })
+    //   })
+    // })
+    _movie = new Movie(movieObj)
+
+    var categoryId = movieObj.category
+    var categoryName = movieObj.categoryName
+
+    _movie.save(function(err, movie) {
       if (err) {
-        console.log(err);
-        return;
+        console.log(err)
       }
-      console.log(categoryId);
-      Category.findById(categoryId, (err, category) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        console.log(category);
-        category.movies.push(movie);
-        category.save((err, category) => {
-          res.redirect('/movie/' + movie._id);
+      if (categoryId) {
+        Category.findById(categoryId, function(err, category) {
+          category.movies.push(movie._id)
+
+          category.save(function(err, category) {
+            res.redirect('/movie/' + movie._id)
+          })
         })
-      })
+      }
+      else if (categoryName) {
+        var category = new Category({
+          name: categoryName,
+          movies: [movie._id]
+        })
+
+        category.save(function(err, category) {
+          movie.category = category._id
+          movie.save(function(err, movie) {
+            res.redirect('/movie/' + movie._id)
+          })
+        })
+      }
     })
   }
 }

@@ -38,7 +38,7 @@ module.exports = function(app) {
   app.get('/admin/user/list', User.signinRequired, User.adminRequired, User.userlist);
   app.delete('/admin/user/list', User.signinRequired, User.adminRequired, User.del);
 
-  app.get('/admin/contact', User.signinRequired, User.adminRequired, User.contact);
+  app.get('/admin/contact', User.contact);
 
   // Movie
   app.get('/movie/:id', Movie.detail);
@@ -55,4 +55,14 @@ module.exports = function(app) {
   app.get('/admin/category/new', User.signinRequired, User.adminRequired, Category.new);
   app.post('/admin/category', User.signinRequired, User.adminRequired, Category.save);
   app.get('/admin/category/list', User.signinRequired, User.adminRequired, Category.list);
+
+  // results
+  app.get('/results', Index.search)
+  
+  // 404
+  app.get('*', function(req, res){
+    res.render('404', {
+        title: 'No Found'
+    })
+  });
 };

@@ -1,3 +1,42 @@
+video{
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  width: auto;
+  z-index: -1;
+  /*加滤镜*/
+  /*-webkit-filter: grayscale(100%);*/
+  /*filter:grayscale(100%);*/
+}
+/*body {
+  background-image: url("/images/21.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto 100% auto;
+  background-attachment: fixed;
+}*/
+.navbar.navbar-default.navbar-top {
+  background-color: transparent;
+}
+.form-control {
+  background-color: transparent;
+}
+input {
+  background-color: transparent;
+}
+.thumbnail {
+  background-color: transparent;
+}
+.panel {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  box-sizing: border-box;
+  background-color: transparent;
+}
 .nav-justified {
   background-color: #eee;
   border: 1px solid #ccc;
