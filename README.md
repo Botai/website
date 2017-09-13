@@ -1,7 +1,10 @@
 # webSite_movie
 ## nodejs+express+mongodb(mongoose)
-#### 简易电影管理系统 增删改查
-<hr>
+#### demo
+
+___
+
+[在线访问](http://123.207.154.174:3000)
 
 ```
 npm install
